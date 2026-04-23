@@ -1,0 +1,203 @@
+"use client";
+
+import { useState } from "react";
+
+export default function Page() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+
+
+  const managers = [
+    { name: "Managing Director", role: "Operations & Strategy" },
+    { name: "Sales Director", role: "Field Force Management" },
+    { name: "Training Manager", role: "Agent Development" },
+  ];
+
+  function handleChange(e: any) {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
+
+  function handleSubmit(e: any) {
+    e.preventDefault();
+    alert("Application submitted successfully!");
+    setForm({ name: "", email: "", phone: "", message: "" });
+  }
+
+  return (
+    <div style={styles.page}>
+      {/* HEADER */}
+      <header style={styles.header}>
+        <h1 style={styles.logo}>MH LEGAL</h1>
+        <p style={styles.tagline}>
+          Corporate Insurance Brokerage & Nationwide Field Force Network
+        </p>
+      </header>
+
+      {/* ABOUT */}
+      <section style={styles.section}>
+        <h2>About Us</h2>
+        <p>
+          MH LEGAL is a corporate insurance brokerage that partners with leading
+          insurers to drive market reach and sales performance. We manage a
+          nationwide network of over 100 professionally trained field agents
+          delivering compliant, client-focused insurance solutions.
+        </p>
+        <p>
+          Through our partnership with Mthashana TVET College, we provide
+          structured in-service training and career development opportunities
+          for young professionals entering the insurance industry.
+        </p>
+      </section>
+
+      {/* PARTNERS */}
+      <section style={styles.section}>
+        <h2>Our Partners</h2>
+        <div style={styles.grid}>
+          {partners.map((p, i) => (
+            <div key={i} style={styles.card}>
+              {p}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* MANAGEMENT */}
+      <section style={styles.section}>
+        <h2>Management Team</h2>
+        <div style={styles.grid}>
+          {managers.map((m, i) => (
+            <div key={i} style={styles.card}>
+              <h3>{m.name}</h3>
+              <p>{m.role}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* APPLY FORM */}
+      <section style={styles.section}>
+        <h2>Apply for a Position</h2>
+        <form onSubmit={handleSubmit} style={styles.form}>
+          <input
+            name="name"
+            placeholder="Full Name"
+            value={form.name}
+            onChange={handleChange}
+            style={styles.input}
+            required
+          />
+          <input
+            name="email"
+            placeholder="Email Address"
+            value={form.email}
+            onChange={handleChange}
+            style={styles.input}
+            required
+          />
+          <input
+            name="phone"
+            placeholder="Phone Number"
+            value={form.phone}
+            onChange={handleChange}
+            style={styles.input}
+            required
+          />
+          <textarea
+            name="message"
+            placeholder="Why do you want to join MH LEGAL?"
+            value={form.message}
+            onChange={handleChange}
+            style={styles.textarea}
+            required
+          />
+          <button type="submit" style={styles.button}>
+            Submit Application
+          </button>
+        </form>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={styles.footer}>
+        <p>© {new Date().getFullYear()} MH LEGAL. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}
+
+/* SIMPLE STYLES */
+const styles: any = {
+  page: {
+    fontFamily: "Arial, sans-serif",
+    background: "#0f172a",
+    color: "white",
+    minHeight: "100vh",
+  },
+  header: {
+    padding: "60px 20px",
+    textAlign: "center",
+    background: "#111827",
+  },
+  logo: {
+    fontSize: "40px",
+    fontWeight: "bold",
+    letterSpacing: "2px",
+  },
+  tagline: {
+    marginTop: "10px",
+    color: "#94a3b8",
+  },
+  section: {
+    padding: "50px 20px",
+    maxWidth: "1000px",
+    margin: "0 auto",
+  },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+    gap: "15px",
+    marginTop: "20px",
+  },
+  card: {
+    background: "#1e293b",
+    padding: "20px",
+    borderRadius: "10px",
+    textAlign: "center",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+    maxWidth: "500px",
+  },
+  input: {
+    padding: "12px",
+    borderRadius: "6px",
+    border: "none",
+  },
+  textarea: {
+    padding: "12px",
+    borderRadius: "6px",
+    border: "none",
+    height: "120px",
+  },
+  button: {
+    padding: "12px",
+    background: "#22c55e",
+    border: "none",
+    borderRadius: "6px",
+    color: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+  },
+  footer: {
+    textAlign: "center",
+    padding: "20px",
+    background: "#111827",
+    marginTop: "40px",
+  },
+};
